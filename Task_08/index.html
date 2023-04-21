@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task_08</title>
     <link rel="stylesheet" href="./bootstrap.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -39,7 +40,7 @@
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit" id="searchInput">Search</button>
             </form>
           </div>
         </div>
@@ -65,18 +66,18 @@
                 <div class="col mb-3">
                     <label for="typeInput" class="form-label">Body type</label>
                     <select class="form-control" id="typeInput">
-                        <option value="option1">HATCHBACK</option>
-                        <option value="option2">MINIVAN</option>
-                        <option value="option3">CABRIOLET</option>
-                        <option value="option4">COUPE</option>
-                        <option value="option5">SEDAN</option>
-                        <option value="option6">SUPERCAR</option>
-                        <option value="option7">OTHER</option>
+                        <option value="HATCHBACK">HATCHBACK</option>
+                        <option value="MINIVAN">MINIVAN</option>
+                        <option value="CABRIOLET">CABRIOLET</option>
+                        <option value="COUPE">COUPE</option>
+                        <option value="SEDAN">SEDAN</option>
+                        <option value="SUPERCAR">SUPERCAR</option>
+                        <option value="OTHER">OTHER</option>
                       </select>
                 </div>
                 <div class="col mb-3">
                     <label for="colorInput" class="form-label">Color</label>
-                    <input type="color" class="form-control" id="colorInput" >
+                    <input type="color" class="form-control" id="colorInput"  >
                 </div>
             </div>
             <div class="row">
