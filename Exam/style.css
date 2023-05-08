@@ -23,3 +23,26 @@ body{
     box-shadow: 0 0.9em 2.8em rgba(86,66,0,0.2);/*встановлюємо тінь для елемента.*/
 }/*правила, які будуть застосовані до класу wrapper(головна обгортка нашої гри)*/
 
+.game-container{
+    position: relative;
+    width: 100%;
+    display: grid;
+    gap: 0.6em;
+
+}
+.card-container {
+    position: relative;
+    width: 6.25em;
+    height: 6.25em;
+    cursor: pointer;
+}
+
+.card-before,.card-after{
+    position: absolute;
+    border-radius: 5px;
+}
+
+img{
+    width: 50%;
+}
+
