@@ -1,5 +1,5 @@
 const moves = document.getElementById("moves-count");
-const time = document.getElementById("time");
+const timeValue = document.getElementById("time");
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 const gameContainer = document.querySelector(".game-container");
@@ -43,7 +43,7 @@ const timeGenerator = () =>{
     }
     let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
     let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-    time.innerHTML= `<span>Time:</span>${minutesValue}:${secondsValue}`;
+    timeValue.innerHTML= `<span>Time:</span>${minutesValue}:${secondsValue}`;
 };
 
 //реалізація для рахунку кроків
@@ -80,7 +80,64 @@ const matrixGenerator = (cardValues,size = 4) => {
             </div> `;
     }
     gameContainer.style.gridTemplateColumns = `repeat(${size}, auto)`;
+
+    cards = document.querySelectorAll(".card-container");
+    cards.forEach((card) => {
+        card.addEventListener("click",()=>{
+        if(!card.classList.contains("matched")){
+            card.classList.add("flipped"); 
+            if(!firstCard){
+                firstCard = card;
+                firstCardValue = card.getAttribute("data-card-value");
+            }
+            else{
+                movesCounter();
+                secondCard = card;
+                let secondCardValue = card.getAttribute("data-card-value");
+                if( firstCardValue == secondCard){
+                    firstCard.classList.add("mathed");
+                    secondCard.classList.add("mathed");
+                    firstCard = false;
+                    winCount +=1;
+                    if(winCount == Math.floor(cardValues.length / 2)){
+                        result.innerHTML =`<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
+                        stopGame();
+                    }
+                }
+                else{
+                    let[tempFirst,tempSecond] = [firstCard,secondCard];
+                    firstCard = false;
+                    secondCard = false;
+                    let delay = setTimeout(() => {
+                        tempFirst.classList.remove("flipped");
+                        tempSecond.classList.remove("flipped")
+                    },900); 
+                }
+    
+            }
+         }
+       });
+    });
 };
+
+startBtn.addEventListener("click",() => {
+    movesCount = 0;
+    time = 0;
+    controls.classList.add("hide");
+    stopBtn.classList.remove("hide");
+    startBtn.classList.add("hide");
+    interval = setInterval(timeGenerator,1000);
+    moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+    initializer();
+} );
+
+stopBtn.addEventListener("cliker",(stopGame = () => {
+    controls.classList.remove("hide");
+    stopBtn.classList.add("hide");
+    startBtn.classList.remove("hide");
+    clearInterval(interval);
+})
+);
 
 const initializer = () =>{
     result.innerHTML = "";
@@ -89,6 +146,6 @@ const initializer = () =>{
     matrixGenerator(cardValues);
 };
 
-initializer();
+
  
 
