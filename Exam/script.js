@@ -94,9 +94,9 @@ const matrixGenerator = (cardValues,size = 4) => {
                 movesCounter();
                 secondCard = card;
                 let secondCardValue = card.getAttribute("data-card-value");
-                if( firstCardValue == secondCard){
-                    firstCard.classList.add("mathed");
-                    secondCard.classList.add("mathed");
+                if( firstCardValue == secondCardValue){
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");
                     firstCard = false;
                     winCount +=1;
                     if(winCount == Math.floor(cardValues.length / 2)){
@@ -122,7 +122,8 @@ const matrixGenerator = (cardValues,size = 4) => {
 
 startBtn.addEventListener("click",() => {
     movesCount = 0;
-    time = 0;
+    seconds = 0;
+    minutes = 0;
     controls.classList.add("hide");
     stopBtn.classList.remove("hide");
     startBtn.classList.add("hide");
@@ -131,7 +132,7 @@ startBtn.addEventListener("click",() => {
     initializer();
 } );
 
-stopBtn.addEventListener("cliker",(stopGame = () => {
+stopBtn.addEventListener("click",(stopGame = () => {
     controls.classList.remove("hide");
     stopBtn.classList.add("hide");
     startBtn.classList.remove("hide");
