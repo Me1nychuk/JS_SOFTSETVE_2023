@@ -69,7 +69,7 @@ const generateRandom = (size = 4) => {
     return cardValues;
 };
 
-//створюємо картки
+//створюємо картки та вішаємо обробники для кожної картки
 const matrixGenerator = (cardValues,size = 4) => {
     gameContainer.innerHTML = "";
     cardValues = [...cardValues,...cardValues];
