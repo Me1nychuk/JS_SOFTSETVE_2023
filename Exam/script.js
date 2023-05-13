@@ -30,9 +30,12 @@ const items = [{name: "crab", image: "./Images/crab.png"},
 let seconds = 0,
 minutes = 0;
 
+let winSeconds = 0,
+winMinutes = 0;
 //для руху
 let movesCount = 0,
 winCount = 0;
+
 
 //реалізація таймера
 const timeGenerator = () =>{
@@ -47,10 +50,10 @@ const timeGenerator = () =>{
 };
 
 //реалізація для рахунку кроків
-const movesCounter= () =>{
-    movesCount +=1;
-    movesCount.innerHTML = `<span>Moves:</span>${moves}`;
-};
+const movesCounter = () => {
+    movesCount += 1;
+    moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+  };
 
 // вибір рандомно з масиву іконок
 const generateRandom = (size = 4) => {
@@ -66,6 +69,7 @@ const generateRandom = (size = 4) => {
     return cardValues;
 };
 
+//створюємо картки
 const matrixGenerator = (cardValues,size = 4) => {
     gameContainer.innerHTML = "";
     cardValues = [...cardValues,...cardValues];
@@ -99,8 +103,10 @@ const matrixGenerator = (cardValues,size = 4) => {
                     secondCard.classList.add("matched");
                     firstCard = false;
                     winCount +=1;
+                    winMinutes = minutes;
+                    winSeconds = seconds;
                     if(winCount == Math.floor(cardValues.length / 2)){
-                        result.innerHTML =`<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
+                        result.innerHTML =`<h2>You Won</h2> <h4>Moves: ${movesCount}</h4> <h4>Time: ${winMinutes}:${winSeconds}</h4>`;
                         stopGame();
                     }
                 }
@@ -120,6 +126,7 @@ const matrixGenerator = (cardValues,size = 4) => {
     });
 };
 
+// вішаю обробник події на кнопку для старту
 startBtn.addEventListener("click",() => {
     movesCount = 0;
     seconds = 0;
@@ -131,6 +138,7 @@ startBtn.addEventListener("click",() => {
     moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
     initializer();
 } );
+// вішаю обробник події на кнопку для зупинки гри
 
 stopBtn.addEventListener("click",(stopGame = () => {
     controls.classList.remove("hide");
@@ -139,7 +147,7 @@ stopBtn.addEventListener("click",(stopGame = () => {
     clearInterval(interval);
 })
 );
-
+//функція для запуску гри після натискання старту
 const initializer = () =>{
     result.innerHTML = "";
     winCount = 0;
